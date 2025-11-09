@@ -19,4 +19,6 @@ void printbanner(void) {
       "   ██║   ██║   ██║██╔══██╗   ██║       ███████████\n"
       "   ██║   ╚██████╔╝██║  ██║   ██║       ██ ██ ██ ██\n"
       "   ╚═╝    ╚═════╝ ╚═╝  ╚═╝   ╚═╝       ╚╝ ╚╝ ╚╝ ╚╝\n\n" RESET);
+
+    p(CYAN "\t\t   Tiny UNIX REPL Terminal\n\n" RESET);
 }
