@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g -I./include
 TARGET = turt
-SRCS = turt.c utils.c
+SRCS = turt.c utils.c builtin.c
 OBJS = $(SRCS:.c=.o)
 DEPS = turt.h
 

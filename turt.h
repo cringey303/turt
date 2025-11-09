@@ -17,7 +17,17 @@
 # define RESET   "\x1b[0m"
 
 #define p(...) printf(__VA_ARGS__)
+#define DEL " \t\n\v\f\r"
 
+typedef struct s_builtin {
+    const char *buitin_name;
+    int (*foo)(char **);
+}   t_builtin;
+
+int turt_exit(char **);
+void loading();
 void Getcwd(char *buf, size_t size);
+void *Malloc(size_t size);
+void *Realloc(void *ptr, size_t size);
 void printbanner(void);
 #endif
