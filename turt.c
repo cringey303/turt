@@ -8,7 +8,8 @@ char *turt_read_line(void) {
     buf = NULL;
 
     Getcwd(cwd, sizeof(cwd));
-    p(CYAN"<<%s>> "RESET GREEN"turt$> "RESET, cwd);
+    printbanner();
+    p(CYAN"[%s] "RESET GREEN"turt$> "RESET, cwd);
 
     if (getline(&buf, &bufsize, stdin) == -1) {
         buf = NULL;
@@ -18,9 +19,7 @@ char *turt_read_line(void) {
         } else {
             p(RED"Getline Failed"RESET);
             exit(EXIT_FAILURE);
-        }
-        p("%s\n", buf); //debug
-            
+        }            
     }
 
     return buf;
@@ -34,14 +33,11 @@ int main(int ac, char **av) {
     char *line;
     //REPL
     //Read-Eval-Print Loop for Turtle graphics commands
-    while (1) {
+    while ((line = turt_read_line())) {
 
         //1) get line
         line = turt_read_line();
-        
-        
         p("%s\n", line);
-        pause();
 
         //2) get tokens gettok
         //  -> lexing -> parsing EVALUATING

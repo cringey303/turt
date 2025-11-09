@@ -19,4 +19,5 @@
 #define p(...) printf(__VA_ARGS__)
 
 void Getcwd(char *buf, size_t size);
+void printbanner(void);
 #endif
