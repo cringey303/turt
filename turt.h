@@ -20,7 +20,7 @@
 #define DEL " \t\n\v\f\r"
 
 typedef struct s_builtin {
-    const char *buitin_name;
+    const char *builtin_name;
     int (*foo)(char **);
 }   t_builtin;
 

@@ -1,28 +1,7 @@
 #include "turt.h"
 
 
-t_builtin g_builtin[] = {
-    // {.builtin_name="echo", .foo=turt_echo};
-    // {.builtin_name="env", .foo=turt_env};
-    {.builtin_name="exit", .foo=turt_exit};
-    {.builtin_name = NULL},
-};
 
-void turt_exec(char **args) {
-    // is builtin command? call it
-    //echo, env, exit
-    // else fork -> execvp -> wait
-    int i = 0;
-    const char *curr;
-    while ((curr = g_builtin[i].builtin_name)) {
-        if (!strcmp(curr, args[0])) {
-            g_builtin [i].foo(args);//TODO
-            return ;
-        }
-        ++i;
-    }
-    turt_launch(args); //fork-execvp-wait //TODO
-}
 // WRAPPERS
 
 void Getcwd(char *buf, size_t size) {
@@ -58,24 +37,24 @@ void *Realloc(void *ptr, size_t size) {
 
 void loading() {
     const char *charging[] = {
-        "[          ]",
-        "[=         ]",
-        "[==        ]",
-        "[===       ]",
-        "[====      ]",
-        "[=====     ]",
-        "[======    ]",
-        "[=======   ]",
-        "[========  ]",
-        "[========= ]",
-        "[==========]"
+        (YELLOW"[          ]"),
+        (YELLOW"[=         ]"),
+        (YELLOW"[==        ]"),
+        (YELLOW"[===       ]"),
+        (YELLOW"[====      ]"),
+        (YELLOW"[=====     ]"),
+        (YELLOW"[======    ]"),
+        (YELLOW"[=======   ]"),
+        (YELLOW"[========  ]"),
+        (YELLOW"[========= ]"),
+        (YELLOW"[==========]"RESET)
     };
     const int frames = sizeof(charging) / sizeof(charging[0]);
     p(RED"Shutting down TURT shell...\n"RESET);
     for (int i = 0; i < frames; ++i) {
         p("\r%s", charging[i]);
         fflush(stdout);
-        usleep(100000);
+        usleep(100000/2);
     }
     p(CYAN"\nGoodbye\n"RESET);
     exit(EXIT_SUCCESS);

@@ -2,8 +2,30 @@
 #include <stdio.h>
 #include <string.h>
 
-//av
+t_builtin g_builtin[] = {
+    // {.builtin_name="echo", .foo=turt_echo},
+    // {.builtin_name="env", .foo=turt_env},
+    {.builtin_name="exit", .foo=turt_exit},
+    {.builtin_name = NULL},
+};
 
+void turt_exec(char **args) {
+    // is builtin command? call it
+    //echo, env, exit
+    // else fork -> execvp -> wait
+    int i = 0;
+    const char *curr;
+    while ((curr = g_builtin[i].builtin_name)) {
+        if (!strcmp(curr, args[0])) {
+            g_builtin [i].foo(args);//TODO
+            return ;
+        }
+        ++i;
+    }
+    //turt_launch(args); //fork-execvp-wait //TODO
+}
+
+//av
 char **turt_tokenize_line(char *line){
     unsigned int position = 0;
     size_t bufsize = BUFSIZ;
@@ -57,14 +79,12 @@ int main(int ac, char **av) {
         //1) get line
         //2) get tokens gettok
         args = turt_tokenize_line(line);
-        for (int i = 0; args[i]; ++i) {
-            p("%s\n", args[i]);
-        }
+
         //  -> lexing -> parsing EVALUATING
 
         //3) Exec
         turt_exec(args); //TODO
-        
+
         //4) Free line
         free(line);
         free(args);
