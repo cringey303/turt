@@ -8,7 +8,7 @@ char *turt_read_line(void) {
     buf = NULL;
 
     Getcwd(cwd, sizeof(cwd));
-    p(CYAN"<<%s>>"RESET, GREEN"turt$> "RESET, cwd);
+    p(CYAN"<<%s>> "RESET GREEN"turt$> "RESET, cwd);
 
     if (getline(&buf, &bufsize, stdin) == -1) {
         buf = NULL;
@@ -30,7 +30,7 @@ int main(int ac, char **av) {
 
     (void)ac;
     (void)av;
-    
+
     char *line;
     //REPL
     //Read-Eval-Print Loop for Turtle graphics commands
