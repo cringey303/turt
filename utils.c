@@ -1,6 +1,9 @@
 #include "turt.h"
-
-
+#include <stdio.h> //perror, fprintf, stderr
+#include <stdlib.h> //exit, malloc, realloc
+#include <unistd.h> //getcwd, fork, execvp
+#include <sys/wait.h> //wait()
+#include <sysexits.h> //EX_OSERR, EX_UNAVAILABLE
 
 // WRAPPERS
 
@@ -35,6 +38,42 @@ void *Realloc(void *ptr, size_t size) {
     return new_ptr;
 }
 
+pid_t Fork(void) {
+    pid_t pid = fork();
+
+    if (pid<0) {
+        perror(RED"Fork failed"RESET);
+        exit(EX_OSERR); //can't fork error
+    }
+    return pid;
+}
+
+void Execvp(const char *file, char *const argv[]) {
+    if (!file || !argv) {
+        fprintf(stderr, RED"Execvp: invalid arguments\n"RESET);
+        exit(EXIT_FAILURE);
+    }
+    if (execvp(file, argv) == -1) {
+        perror(RED"TURT_Jr failed"RESET);
+        exit(EX_UNAVAILABLE); //service unavailable
+    }
+}
+
+pid_t Wait(int *status) {
+    pid_t result;
+
+    if (!status) {
+        fprintf(stderr, RED"Wait: status argument required\n"RESET);
+        return (-1);
+    }
+    result = wait(status);
+    if (result == -1) {perror(RED"Wait failed"RESET);}
+    if (WIFEXITED(*status)) {*status = WEXITSTATUS(*status);}
+    return result;
+}
+
+
+//graphics
 void loading() {
     const char *charging[] = {
         (YELLOW"[          ]"),
@@ -54,7 +93,7 @@ void loading() {
     for (int i = 0; i < frames; ++i) {
         p("\r%s", charging[i]);
         fflush(stdout);
-        usleep(100000/2);
+        usleep(50000);
     }
     p(CYAN"\nGoodbye\n"RESET);
     exit(EXIT_SUCCESS);
