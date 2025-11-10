@@ -1,7 +1,7 @@
 # turt - Tiny UNIX REPL Terminal
 
 `turt` is a simple shell written in C.
-<img width="707" height="318" alt="image" src="https://github.com/user-attachments/assets/ee810839-8885-4bb9-8ced-d67012a9ad6a" />
+<img width="1462" height="1112" alt="image" src="https://github.com/user-attachments/assets/93b85de9-2162-4406-8b54-d3818ba8f50b" />
 
 ## Features
 
