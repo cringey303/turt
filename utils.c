@@ -1,6 +1,9 @@
 #include "turt.h"
-
-
+#include <stdio.h> //perror, fprintf, stderr
+#include <stdlib.h> //exit, malloc, realloc
+#include <unistd.h> //getcwd, fork, execvp
+#include <sys/wait.h> //wait()
+#include <sysexits.h> //EX_OSERR, EX_UNAVAILABLE
 
 // WRAPPERS
 
@@ -65,9 +68,12 @@ pid_t Wait(int *status) {
     }
     result = wait(status);
     if (result == -1) {perror(RED"Wait failed"RESET);}
+    if (WIFEXITED(*status)) {*status = WEXITSTATUS(*status);}
     return result;
 }
 
+
+//graphics
 void loading() {
     const char *charging[] = {
         (YELLOW"[          ]"),
@@ -87,7 +93,7 @@ void loading() {
     for (int i = 0; i < frames; ++i) {
         p("\r%s", charging[i]);
         fflush(stdout);
-        usleep(100000/2);
+        usleep(50000);
     }
     p(CYAN"\nGoodbye\n"RESET);
     exit(EXIT_SUCCESS);
