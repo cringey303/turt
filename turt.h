@@ -18,12 +18,14 @@
 
 #define p(...) printf(__VA_ARGS__)
 #define DEL " \t\n\v\f\r"
+#define TURT_Jr = 0;
 
 typedef struct s_builtin {
     const char *builtin_name;
     int (*foo)(char **);
 }   t_builtin;
 
+int turt_env(char **);
 int turt_exit(char **);
 void loading();
 void Getcwd(char *buf, size_t size);

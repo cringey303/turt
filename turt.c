@@ -9,6 +9,12 @@ t_builtin g_builtin[] = {
     {.builtin_name = NULL},
 };
 
+int status = 0;
+
+void turt_launch(char **args) {
+    if (Fork() == TURT_Jr) {Execvp(args[0], args);}
+    else {}
+}
 void turt_exec(char **args) {
     // is builtin command? call it
     //echo, env, exit
@@ -17,7 +23,7 @@ void turt_exec(char **args) {
     const char *curr;
     while ((curr = g_builtin[i].builtin_name)) {
         if (!strcmp(curr, args[0])) {
-            g_builtin [i].foo(args);//TODO
+            status = g_builtin [i].foo(args);//TODO
             return ;
         }
         ++i;
