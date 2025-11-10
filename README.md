@@ -2,7 +2,7 @@
 
 `turt` is a simple shell written in C.
 
-<img width= "350" height="280" alt="image" src="https://github.com/user-attachments/assets/93b85de9-2162-4406-8b54-d3818ba8f50b" />
+<img width= "550" height="480" alt="image" src="https://github.com/user-attachments/assets/93b85de9-2162-4406-8b54-d3818ba8f50b" />
 
 ## Features
 
