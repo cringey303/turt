@@ -43,7 +43,23 @@ char **turt_tokenize_line(char *line){
     unsigned int position = 0;
     size_t bufsize = BUFSIZ;
     char **tokens = Malloc(bufsize * sizeof *tokens);
+    // int in_quote = 0;
+    // char *start = line;
+    // int position = 0;
 
+    // while (*line) {
+    //     if (*line == '"') {
+    //         in_quote = !in_quote;
+    //         *line = '';
+    //         start = line + 1;
+    //     }
+    //     else if (!in_quote && strchr(DEL, *line)) {
+    //         *line = '';
+    //         if (line > start) {
+    //             tokens[position++] = start;
+    //         }
+    //     }
+    // }
     for (char *token = strtok(line, DEL); token; token = strtok(NULL, DEL)) {
         tokens[position++] = token;
         if (position >= bufsize) {
