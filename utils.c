@@ -99,7 +99,7 @@ void loading() {
     exit(EXIT_SUCCESS);
 }
 void printbanner(void) {
-    p(CYAN "\n\t\t=== TURTLE SHELL INITIALIZED ===\n\n" RESET);
+    p(CYAN "\n\t    === TURTLE SHELL INITIALIZED ===\n\n" RESET);
 
     p(GREEN
       "████████╗██╗   ██╗██████╗ ████████╗      ▄█████▄   ████\n"
@@ -109,5 +109,5 @@ void printbanner(void) {
       "   ██║   ╚██████╔╝██║  ██║   ██║       ██ ██ ██ ██\n"
       "   ╚═╝    ╚═════╝ ╚═╝  ╚═╝   ╚═╝       ╚╝ ╚╝ ╚╝ ╚╝\n\n" RESET);
 
-    p(CYAN "\t\t   Tiny UNIX REPL Terminal\n\n" RESET);
+    p(CYAN "\t\t Tiny UNIX REPL Terminal\n\n" RESET);
 }
